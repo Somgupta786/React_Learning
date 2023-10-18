@@ -1,44 +1,28 @@
 import React from "react";
-import contacts from './contacct'
+import Entry from "./Entry";
+import emojipedia from "./emojipedia";
 
-function Card(props){
+function createEntry(emojiTerm) {
     return (
-        <div>
-          <h1 className="heading">My Contacts</h1>
-          <div className="card">
-            <div className="top">
-              <h2 className="name">{props.name}</h2>
-              <img className="circle-img"
-                src={props.src}
-                alt="avatar_img"
-              />
-            </div>
-            <div className="bottom ">
-              <p className="info ">{props.tel}</p>
-              <p className="info ">{props.mail}</p>
-            </div>
-          </div>
-        </div>
-      );
-}
-function placing(cont){
-<Card name={cont.name}
-    src={cont.imgURL}
-    tel={cont.phone}
-    mail={cont.email}
-/>
-}
-function App() {
-    return(<>{contacts.map(placing)
-     } </>
-    
-    
-    
-    
-    
-    
+      <Entry
+        key={emojiTerm.id}
+        emoji={emojiTerm.emoji}
+        name={emojiTerm.name}
+        description={emojiTerm.meaning}
+      />
     );
- 
-}
+  }
 
-export default App;
+
+
+
+export default function App() {
+    return (
+      <div>
+        <h1>
+          <span>emojipedia</span>
+        </h1>
+        <dl className="dictionary">{emojipedia.map(createEntry)}</dl>
+      </div>
+    );
+  }
