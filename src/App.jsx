@@ -1,16 +1,16 @@
 import React from 'react'
+import './index.css'
 import Header from './Header'
-import Footer from './Footer'
-import  Note from './Note'
- export default function App(){
-    return(<>
-    <Header />
-    <Note />
-    <Footer />
-    
-    </>
+import Forms from './Forms'
 
-
-
+function App() {
+    return (
+      <div className="main">
+        <Header />
+        <Forms />
+      </div>
     );
- }
+  }
+  export default App;
+
+

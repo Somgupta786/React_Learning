@@ -1,8 +1,15 @@
+
 import React from 'react'
 
-export default function Note(){
-  return( <div className='note'>
-    <h1>This is note title</h1> 
-    <p>This is a note content</p>
- </div>) ;
+export default function Note({ id, text, deleteNote }){
+    return (
+        <div className="note">
+          <div className="note__body">{text}</div>
+          <div className="note__footer" style={{ justifyContent: "flex-end" }}>
+            
+            <button className="note__delete" onClick={() => deleteNote(id) } >Delete</button>
+          </div>
+          
+        </div>
+      );
 }
