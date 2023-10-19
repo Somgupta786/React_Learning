@@ -8,6 +8,7 @@ export default function Note({ id, text, deleteNote }){
           <div className="note__footer" style={{ justifyContent: "flex-end" }}>
             
             <button className="note__delete" onClick={() => deleteNote(id) } >Delete</button>
+            <button className="note__delete"  >edit</button>
           </div>
           
         </div>
