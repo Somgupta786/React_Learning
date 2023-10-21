@@ -4,4 +4,4 @@ import ReactDOM from 'react-dom'
 import App from './App.jsx'
 import './index.css'
 
-ReactDOM.render(<div><App /></div>, document.getElementById('root'));
+ReactDOM.render(<div className='main'><App /></div>, document.getElementById('root'));

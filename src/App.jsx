@@ -5,7 +5,7 @@ import Forms from './Forms'
 
 function App() {
     return (
-      <div className="main">
+      <div className="form">
         <Header />
         <Forms />
       </div>
