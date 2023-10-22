@@ -44,7 +44,7 @@ const handleChange = e => {
     setError( {
     firstname: !valid_text.test(inputs.firstname.trim())|inputs.firstname.trim()===''|(inputs.firstname.length>15) ? 'Enter the First Name correctly!' : '',
     gender: inputs.gender ? '':'Enter your gender',
-    address: !valid_text.test(inputs.address.trim())|inputs.address.trim()===''|(inputs.address.length>20) ? 'Enter the City Name correctly!' : '',
+    address: !valid_text.test(inputs.address.trim())|inputs.address.trim()===''|(inputs.address.length>25) ? 'Enter the Address in short !' : '',
     rollno: !rollno_valid.test(inputs.rollno.trim())? 'Enter the Roll No correctly!' : '',
     mobile: !mobile_valid.test(inputs.mobile.trim())? 'Enter the Mobile No correctly!' : '',
     email: (inputs.email.trim() === '')|!email_valid.test(inputs.email.trim())|(inputs.email.length>50)? 'Enter the email correctly!' : '',

@@ -29,7 +29,7 @@ export default function Forms() {
           placeholder="Roll Number"
           className="inputBox"
         />
-        {error.firstname !== '' && <p style={{ color: "red" }}>{error.rollno}</p>}
+        {error.rollno !== '' && <p style={{ color: "red" }}>{error.rollno}</p>}
 
         <label htmlFor="mobile" className='label'>Phone No :-</label>
         <input
