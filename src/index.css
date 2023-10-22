@@ -67,6 +67,9 @@ body {
   font-size: 18px;
   color:white;
  }
+ .button:hover{
+  cursor: pointer;
+ }
   .gender{
     display: flex;
     width: 50vw;
@@ -80,9 +83,41 @@ body {
     border-radius: 2%;
     color:#afaaaa ;
   }
+  .show_Button{
+    width: 3vw;
+  height: 20px;
+  background: none;
+  font-size: 12px;
+  color:white;
+  }
+  .password_input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    
+  }
   @media  (max-width: 1200px) {
     .gender {
       gap: 4px;
       font-size: 20px;
     }
+    .button{
+      width:100px ;
+    }
+    .show_Button{
+      width: 40px;
+    }
+  }
+  @media  (max-width: 500px) {
+
+.inputBox{
+  width:60vw ;
+  font-size:25px ;
+}
+.gender{
+  width: 70vw;
+}
+
+
   }

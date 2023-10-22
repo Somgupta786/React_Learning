@@ -1,5 +1,6 @@
-import './index.css'
+import './index.css';
 import { useState } from "react";
+
 function CreateNotes() {
   const [inputs, setInputs] = useState({
     firstname: "",
@@ -8,68 +9,68 @@ function CreateNotes() {
     rollno: "",
     mobile: "",
     address: "",
-    password: ""
-    
-});
-const [error,setError]  =  useState({
-  firstname: "",
+    password: "",
+    passwordConfirm: ""
+  });
+
+  const [error, setError] = useState({
+    firstname: "",
     gender: "",
     email: "",
     rollno: "",
     mobile: "",
     address: "",
-    password: ""
-    
-})
-const handleChange = e => {
-  setInputs({
-    ...inputs,
-    [e.target.name]: e.target.value
+    password: "",
+    passwordConfirm: ""
   });
 
-}
+  const email_valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const mobile_valid = /^((\+91)|(91)|0?)[6-9]\d{9}$/;
+  const rollno_valid = /^[1-2]\d{12}$/;
+  const valid_text = /^[a-zA-Z ]*$/;
+  const password_valid = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}/;
 
+  const handleChange = e => {
+    const { name, value } = e.target;
 
+    setInputs({
+      ...inputs,
+      [name]: value
+    });
 
+    setError({
+      ...error,
+      [name]: (name === "firstname"  && value.trim() !== '' && (!valid_text.test(value.trim()) || value.trim() === '' || value.length > 15)) ? 'Name should not contain any number' :
+              (name === "gender" && value.trim() === '') ? 'Enter your gender' :
+              (name === "address" && value.trim() !== '' && (!valid_text.test(value.trim()) || value.trim() === '' || value.length > 25)) ? 'Do not use numbers' :
+              (name === "rollno" && value.trim() !== '' && !rollno_valid.test(value.trim())) ? 'Roll number should contain 13 numeric value!' :
+              (name === "mobile" && value.trim() !== '' && !mobile_valid.test(value.trim())) ? '10 valid digits needed!' :
+              (name === "email" && value.trim() !== '' && (value.trim() === '' || !email_valid.test(value.trim()) || value.length > 50)) ? 'Enter the email correctly!' :
+              (name === "password" && value.trim() !== '' && (!password_valid.test(value.trim()) || value.trim() === '' || value.length < 6)) ? 'Password should contain at least one letter and one number' : 
+              (name === "passwordConfirm" && value.trim() !== '' && value !== inputs.password) ? 'Password is not matching!' : '' 
+  
+    });
+  };
 
-
-
-  const email_valid= /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const mobile_valid= /^((\+91)|(91)|0?)[6-9]\d{9}$/;
-  const rollno_valid= /^[1-2]\d{12}$/;
-  const valid_text=/^[a-zA-Z ]*$/;
-  const password_valid=/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}/;
   const handleSubmit = e => {
     e.preventDefault();
-    setError( {
-    firstname: !valid_text.test(inputs.firstname.trim())|inputs.firstname.trim()===''|(inputs.firstname.length>15) ? 'Enter the First Name correctly!' : '',
-    gender: inputs.gender ? '':'Enter your gender',
-    address: !valid_text.test(inputs.address.trim())|inputs.address.trim()===''|(inputs.address.length>25) ? 'Enter the Address in short !' : '',
-    rollno: !rollno_valid.test(inputs.rollno.trim())? 'Enter the Roll No correctly!' : '',
-    mobile: !mobile_valid.test(inputs.mobile.trim())? 'Enter the Mobile No correctly!' : '',
-    email: (inputs.email.trim() === '')|!email_valid.test(inputs.email.trim())|(inputs.email.length>50)? 'Enter the email correctly!' : '',
-    password: !password_valid.test(inputs.password.trim())|(inputs.password.trim() === '')|(inputs.password.length<6) ? 'Password should contain atleast one letter and one number' : '',
-   
-  })
 
-  
-  
-  let hasErrors = false;
-  for (const i in error) {
-    if (error[i] !== '') {
-      hasErrors = true;
+    let hasErrors = false;
+    for (const key in error) {
+      if (error[key] !== '') {
+        hasErrors = true;
+        break; 
+      }
     }
-  }
 
-  if (!hasErrors) {
-    console.log('Form submitted:', inputs);
-  }
-  else{
-  console.log('fill all the details correctly!');
-};
-} 
-  return { handleChange, inputs, handleSubmit, error };
+    if (!hasErrors) {
+      console.log('Form submitted:', inputs);
+    } else {
+      console.log('Fill all the details correctly!');
+    }
+  };
+
+  return { handleChange, inputs, handleSubmit, error};
 }
-
 
 export default CreateNotes;

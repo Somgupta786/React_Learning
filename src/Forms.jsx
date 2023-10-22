@@ -1,8 +1,13 @@
 import './index.css';
 import Validation from "./CreateNotes";
+import { useState } from "react";
 
 export default function Forms() {
   const { handleChange, inputs, handleSubmit, error } = Validation();
+  const [visible, setVisible] = useState(false);
+  const togglePassword = () => {
+    setVisible(!visible);
+  };
 
   return (
     <div>
@@ -14,6 +19,7 @@ export default function Forms() {
           onChange={handleChange}
           type="text"
           name="firstname"
+          maxLength="15"
           placeholder="Full Name"
           className="inputBox"
         />
@@ -24,7 +30,7 @@ export default function Forms() {
           required
           value={inputs.rollno}
           onChange={handleChange}
-          type="number"
+          type="text"
           name="rollno"
           placeholder="Roll Number"
           className="inputBox"
@@ -36,12 +42,13 @@ export default function Forms() {
           required
           value={inputs.mobile}
           onChange={handleChange}
+          maxLength="10"
           className="inputBox"
-          type="number"
+          type="text"
           name="mobile"
           placeholder="Phone no."
         />
-        {error.lastname !== '' && <p style={{ color: "red" }}>{error.mobile}</p>}
+        {error.mobile !== '' && <p style={{ color: "red" }}>{error.mobile}</p>}
 
         <label htmlFor="email" className='label'>Email</label>
         <input
@@ -55,14 +62,15 @@ export default function Forms() {
         />
         {error.email !== '' && <p style={{ color: "red" }}>{error.email}</p>}
 
-        <label htmlFor="address" className='label'>Adress</label>
+        <label htmlFor="address" className='label'>Address</label>
         <input
           required
           value={inputs.city}
           onChange={handleChange}
           type="text"
           name="address"
-          placeholder="Adress"
+          maxLength="25"
+          placeholder="Address"
           className="inputBox"
         />
         {error.address !== '' && <p style={{ color: "red" }}>{error.address}</p>}
@@ -76,18 +84,34 @@ export default function Forms() {
         {error.gender !== '' && <p style={{ color: "red" }}>{error.gender}</p>}
 
         <label htmlFor="password" className='label'>Password</label>
-        <input
-          required
-          value={inputs.password}
-          onChange={handleChange}
-          type="password"
-          name="password"
-          placeholder="Password"
-          className="inputBox"
-        />
+        <div className="password_input">
+          <input
+            required
+            value={inputs.password}
+            onChange={handleChange}
+            type={visible ? "text" : "password"}
+            name="password"
+            placeholder="Password"
+            className="inputBox"
+          />
+          <button className='show_Button' onClick={togglePassword}>
+            {visible ? "Hide" : "Show"}
+          </button>
+        </div>
         {error.password !== '' && <p style={{ color: "red" }}>{error.password}</p>}
 
-        <button className="button">SUBMIT</button>
+          <label htmlFor="passwordConfirm" className='label'>Confirm Password</label>
+          <input required
+            type="password"
+            name="passwordConfirm"
+            placeholder="Confirm password"
+            value={inputs.passwordConfirm}
+            onChange={handleChange}
+            className="inputBox"
+          />
+          {error.passwordConfirm !== '' && <p style={{ color: "red" }}>{error.passwordConfirm}</p>}
+         
+        <button className="button" >SUBMIT</button>
       </form>
     </div>
   );
