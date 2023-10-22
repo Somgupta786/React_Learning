@@ -75,7 +75,7 @@ body {
     width: 50vw;
     height: 40px;
     background: none;
-    font-size: 30px;
+    font-size: 25px;
     justify-content: center;
     align-items: center;
     gap: 16px;
@@ -91,10 +91,9 @@ body {
   color:white;
   }
   .password_input{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 3px;
+    position: relative;
+    left: 14px;
+   
     
   }
   .errorMessage {
@@ -121,7 +120,9 @@ body {
   font-size:20px ;
 }
 .gender{
-  width: 70vw;
+  width: 60vw;
+  font-size:15px ;
+  gap: 7px;
 }
 .label{
   font-size: 15px;
