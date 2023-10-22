@@ -1,64 +1,94 @@
-import { useState } from "react";
-import './index.css'
+import './index.css';
+import Validation from "./CreateNotes";
 
-function Forms() {
+export default function Forms() {
+  const { handleChange, inputs, handleSubmit, error } = Validation();
 
-    const [email, setEmail] = useState('');
-  const [isValidEmail, setIsValidEmail] = useState(true);
-  const handleEmailChange = (event) => {
-    const inputValue = event.target.value;
-    setEmail(inputValue);
+  return (
+    <div>
+      <form className="inputForm" onSubmit={handleSubmit}>
+        <label htmlFor="firstname" className='label'> Full Name:</label>
+        <input
+          required
+          value={inputs.firstname}
+          onChange={handleChange}
+          type="text"
+          name="firstname"
+          placeholder="Full Name"
+          className="inputBox"
+        />
+        {error.firstname !== '' && <p style={{ color: "red" }}>{error.firstname}</p>}
 
-    // Validate email using a regular expression
-    const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-    setIsValidEmail(emailPattern.test(inputValue));
-  };
- return(<div>
-    <form className="inputForm" >
-<input required
-     type="text"
-     name="firstname"
-    placeholder="First Name"
-      className="inputBox" />  
-<input  required
-    className="inputBox"
-    type="text"
-    name="lastname"
-     placeholder="Last Name" />
-      <input  
-      required
-      className="inputBox"
-      onChange={handleEmailChange}
-            type="email"
-            name="email"
-            placeholder="Email"
-          />
-            
+        <label htmlFor="rollno" className='label'>Roll number :</label>
+        <input
+          required
+          value={inputs.rollno}
+          onChange={handleChange}
+          type="number"
+          name="rollno"
+          placeholder="Roll Number"
+          className="inputBox"
+        />
+        {error.firstname !== '' && <p style={{ color: "red" }}>{error.rollno}</p>}
 
- <input  required
-            type="textarea"
-            name="address"
-            placeholder="City"
-            className="inputBox"
-          />
-          <input required
-            type="text"
-            name="username"
-            placeholder="Username"
-            className="inputBox"
-          />
-          <input required
-            type="password"
-            name="password"
-            placeholder="Password"
-            className="inputBox"
-          />
- <button className="button">SUBMIT</button>
- {!isValidEmail && <p style={{color:"black"
- }}>Please enter a valid email address.</p>}
-    </form>
- </div>)
-  
+        <label htmlFor="mobile" className='label'>Phone No :-</label>
+        <input
+          required
+          value={inputs.mobile}
+          onChange={handleChange}
+          className="inputBox"
+          type="number"
+          name="mobile"
+          placeholder="Phone no."
+        />
+        {error.lastname !== '' && <p style={{ color: "red" }}>{error.mobile}</p>}
+
+        <label htmlFor="email" className='label'>Email</label>
+        <input
+          required
+          className="inputBox"
+          value={inputs.email}
+          onChange={handleChange}
+          type="email"
+          name="email"
+          placeholder="Email"
+        />
+        {error.email !== '' && <p style={{ color: "red" }}>{error.email}</p>}
+
+        <label htmlFor="address" className='label'>Adress</label>
+        <input
+          required
+          value={inputs.city}
+          onChange={handleChange}
+          type="text"
+          name="address"
+          placeholder="Adress"
+          className="inputBox"
+        />
+        {error.address !== '' && <p style={{ color: "red" }}>{error.address}</p>}
+
+        <label htmlFor="gender" className='label'>Gender:</label>
+        <div className="gender" onChange={handleChange}>
+          <input type="radio" value="Male" name="gender" /> Male
+          <input type="radio" value="Female" name="gender" /> Female
+          <input type="radio" value="Other" name="gender" /> Other
+        </div>
+        {error.gender !== '' && <p style={{ color: "red" }}>{error.gender}</p>}
+
+        <label htmlFor="password" className='label'>Password</label>
+        <input
+          required
+          value={inputs.password}
+          onChange={handleChange}
+          type="password"
+          name="password"
+          placeholder="Password"
+          className="inputBox"
+        />
+        {error.password !== '' && <p style={{ color: "red" }}>{error.password}</p>}
+
+        <button className="button">SUBMIT</button>
+      </form>
+    </div>
+  );
 }
-
-export default Forms;
