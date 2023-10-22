@@ -23,7 +23,7 @@ export default function Forms() {
           placeholder="Full Name"
           className="inputBox"
         />
-        {error.firstname !== '' && <p style={{ color: "red" }}>{error.firstname}</p>}
+        {error.firstname !== '' ? <p className="errorMessage" style={{ color: "red" }}>{error.firstname}</p> : <p className="errorMessage"></p>}
 
         <label htmlFor="rollno" className='label'>Roll number :</label>
         <input
@@ -35,7 +35,7 @@ export default function Forms() {
           placeholder="Roll Number"
           className="inputBox"
         />
-        {error.rollno !== '' && <p style={{ color: "red" }}>{error.rollno}</p>}
+        {error.rollno !== '' ? <p className="errorMessage" style={{ color: "red" }}>{error.rollno}</p> : <p className="errorMessage"></p>}
 
         <label htmlFor="mobile" className='label'>Phone No :-</label>
         <input
@@ -48,7 +48,7 @@ export default function Forms() {
           name="mobile"
           placeholder="Phone no."
         />
-        {error.mobile !== '' && <p style={{ color: "red" }}>{error.mobile}</p>}
+        {error.mobile !== '' ? <p className="errorMessage" style={{ color: "red" }}>{error.mobile}</p> : <p className="errorMessage"></p>}
 
         <label htmlFor="email" className='label'>Email</label>
         <input
@@ -60,7 +60,7 @@ export default function Forms() {
           name="email"
           placeholder="Email"
         />
-        {error.email !== '' && <p style={{ color: "red" }}>{error.email}</p>}
+        {error.email !== '' ? <p className="errorMessage" style={{ color: "red" }}>{error.email}</p> : <p className="errorMessage"></p>}
 
         <label htmlFor="address" className='label'>Address</label>
         <input
@@ -73,7 +73,7 @@ export default function Forms() {
           placeholder="Address"
           className="inputBox"
         />
-        {error.address !== '' && <p style={{ color: "red" }}>{error.address}</p>}
+        {error.address !== '' ? <p className="errorMessage" style={{ color: "red" }}>{error.address}</p> : <p className="errorMessage"></p>}
 
         <label htmlFor="gender" className='label'>Gender:</label>
         <div className="gender" onChange={handleChange}>
@@ -81,7 +81,7 @@ export default function Forms() {
           <input type="radio" value="Female" name="gender" /> Female
           <input type="radio" value="Other" name="gender" /> Other
         </div>
-        {error.gender !== '' && <p style={{ color: "red" }}>{error.gender}</p>}
+        {error.gender !== '' ? <p className="errorMessage" style={{ color: "red" }}>{error.gender}</p> : <p className="errorMessage"></p>}
 
         <label htmlFor="password" className='label'>Password</label>
         <div className="password_input">
@@ -98,7 +98,7 @@ export default function Forms() {
             {visible ? "Hide" : "Show"}
           </button>
         </div>
-        {error.password !== '' && <p style={{ color: "red" }}>{error.password}</p>}
+        {error.password !== '' ? <p className="errorMessage" style={{ color: "red" }}>{error.password}</p> : <p className="errorMessage"></p>}
 
           <label htmlFor="passwordConfirm" className='label'>Confirm Password</label>
           <input required
@@ -109,7 +109,8 @@ export default function Forms() {
             onChange={handleChange}
             className="inputBox"
           />
-          {error.passwordConfirm !== '' && <p style={{ color: "red" }}>{error.passwordConfirm}</p>}
+          
+          {error.passwordConfirm !== '' ? <p className="errorMessage" style={{ color: "red" }}>{error.passwordConfirm}</p> : <p className="errorMessage"></p>}
          
         <button className="button" >SUBMIT</button>
       </form>
